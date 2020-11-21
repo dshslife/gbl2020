@@ -1,0 +1,66 @@
+{% load socialaccount %}
+{% providers_media_js %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href='{% static "website/style.css" %}'>
+		<link rel="stylesheet" href='{% static "website/css/bootstrap.css" %}'>
+  <title>SUMUD메인화면</title>
+</head>
+<body>
+
+{% include 'website/navbar.html' %}
+
+  <div class="body">
+    <div class="main">
+    <div class="main_title">
+      Start Up <br/>
+      Meet Up Day <br/>
+      2020 <br/>
+    </div>
+    <div class="minititle" style="margin-top: 10%;">
+      행사 일정
+    </div>
+    {% for pl in plan %}
+    <div class="box">
+      <div class="row2">
+        <div class="minibox" style="flex: 1; margin-left: 5%; margin-top: 4%; margin-bottom: 4%;">
+          <div class="plan_title">
+            {{pl.name | linebreaksbr}}
+          </div>
+          <div class="content">
+            {{pl.where | linebreaksbr}}
+          </div>
+        </div>
+        <div class="minibox leftgo" style="margin-right: 5%; margin-top: 4%; margin-bottom: 4%;">
+          <div class="happy_text">
+            {{pl.date | linebreaksbr}}
+          </div>
+        </div>
+      </div> 
+    </div>
+    {% endfor %}
+    <div class="minititle" style="margin-top: 10%;">
+      부스 정보
+    </div>
+    {% for boot in booth %}
+    <div class="box">
+      <div class="row2">
+        <div class="minibox" style="flex: 1; margin-left: 5%; margin-top: 4%; margin-bottom: 4%;">
+          <div class="plan_title">
+            {{boot.name | linebreaksbr}}
+          </div>
+          <div class="content">
+            {{boot.club | linebreaksbr}}
+          </div>
+        </div>
+      </div> 
+    </div>
+    {% endfor %}
+  </div>
+  </div>
+</body>
+</html>

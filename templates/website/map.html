@@ -1,0 +1,30 @@
+{% load socialaccount %}
+{% providers_media_js %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href='{% static "website/style_ss.css" %}'>
+		<link rel="stylesheet" href='{% static "website/css/bootstrap.css" %}'>
+  <title>SUMUD부스지도</title>
+</head>
+<body>
+
+{% include 'website/navbar.html' %}
+  <div class="body">
+    <div class="main">
+        <br>
+        <div class="main1">Startup Meet Up Day</div>
+        <div class="main2">부스지도</div>
+        <p>위치 : 3층 진로실 앞 동아리 회의실</p>
+        <div class="pic">
+            <br>
+            <img src="{% static "website/map.png" %}" style="max-width: 100%; height: auto;"alt="My Image">
+        </div>
+        <br><br>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,25 @@
+{% load socialaccount %}
+{% providers_media_js %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href='{% static "website/style.css" %}'>
+		<link rel="stylesheet" href='{% static "website/css/bootstrap.css" %}'>
+		<title>startupmeetupday</title>
+	</head>
+	<body>
+        <main>
+		{% if user.is_authenticated %}
+		{{user.username}} 님이 현재 로그인중
+		{% else %}
+		<a href="{% provider_login_url 'google' %}">구글 로그인</a>
+		로그인 하셔야 합니다.
+		{% endif %}
+		
+		{% block content %}{% endblock %}
+	</main>
+		<!--script태그는 body태그 맨 밑에 놔주세요 -->
+		<script type="text/javascript" src='{% static "website/js/bootstrap.js" %}'></script>
+	</body>
+</html>

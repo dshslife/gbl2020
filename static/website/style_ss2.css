@@ -1,0 +1,73 @@
+@charset "utf-8";
+
+
+* {
+  @import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css); 
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 10;
+}
+
+.bottom-navbar {
+    background-color: #161A34;
+    height: 8%;
+    color: #878A9E;
+    padding-top : 0.5rem;
+    padding-bottom : 0.3rem;
+    font-size: 12px;
+  }
+
+  ul {
+      text-align: center;
+      list-style-type: none;
+      overflow: hidden;
+      float: end;
+      padding-inline-start: 0px;
+      display: flex;
+      flex-wrap: wrap;
+  }
+
+  li {
+      display: inline-block;
+      flex: 3;
+  }
+
+  li a{
+      display: block;
+      text-align: center;
+      font-size: 15px;
+      text-decoration: none;
+  }
+
+  li a svg {
+      font-size: 21px;
+  }
+/*화면에 따라 색 변경됨*/
+  li a.current{
+      color: #F94077;
+  }
+
+    .bottom-navbar a:link {
+        background-color: #161A34;
+        color: #878A9E;
+    }
+
+  .bottom-navbar a:hover {
+      background-color: #161A34;
+      color: #878A9E;
+  }
+
+    .bottom-navbar a:visited {
+        background-color: #161A34;
+        color: #878A9E;
+    }
+
+  .bottom-navbar a:active {
+      text-decoration: none;
+      background-color: #161A34;
+      color: #F94077;
+      text-underline: none;
+      position: relative;
+      top: 1px;
+      margin-bottom: 1px;
+      box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.42);
+  }

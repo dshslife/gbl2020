@@ -1,0 +1,36 @@
+{% load socialaccount %}
+{% providers_media_js %}
+{% load static %}
+{% load webpush_notifications %}
+<!DOCTYPE html>
+<html>
+	<head>
+        <link rel="stylesheet" href='{% static "website/style_ss.css" %}'>
+		<link rel="stylesheet" href='{% static "website/css/bootstrap.css" %}'>
+        <title>login</title>
+        {% webpush_header %}
+	</head>
+	<body>
+    <div class="body">
+    <div class="main">
+
+        <div class="login_sumud">
+            Start Up<br>Meet Up Day<br>2020
+        </div>
+        {% webpush_button %}
+        <div class="sub_text">
+            학교구글계정(dshs.kr)으로 로그인 해주세요.
+        </div>
+        <div class="sub_btn">
+        <a href="/accounts/google/login"><button type="button" class="btn_plus">구글로 로그인</button></a>
+        </div>
+
+        <div class="box"></div>
+
+    </div>
+    </div>
+
+		<!--script태그는 body태그 맨 밑에 놔주세요 -->
+		<script type="text/javascript" src='{% static "website/js/bootstrap.js" %}'></script>
+	</body>
+</html>

@@ -1,0 +1,48 @@
+{% load socialaccount %}
+{% providers_media_js %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StartUp MeetUp Day 2020</title>
+  <link rel="stylesheet" href='{% static "website/style.css" %}'>
+  <link rel="stylesheet" href='{% static "website/css/bootstrap.css" %}'>
+</head>
+<body>
+
+{% include 'website/navbar.html' %}
+
+  <div class="body">
+    <div class="main">
+        <br>
+      <div class="minititle_ss">
+        프로필
+      </div>
+      <div class="box">
+        <div class="row2">
+          <div class="minibox" style="flex: 1; margin-left: 5%; margin-top: 4%; margin-bottom: 4%;">
+            <div class="plan_title">
+              {{user.username}}
+            </div>
+            <div class="content">
+              {{user}}
+            </div>
+          </div>
+        </div> 
+      </div>
+      <div class="box">
+          <div class="minibox" style="display: flex; flex: 1; align-items: center; margin-top: 4%; margin-bottom: 4%;">
+            <a rel='nofollow' border='0' style='cursor:default; align-items: center;'><img style="width: 100%;" src='https://chart.googleapis.com/chart?cht=qr&chl=http%3A%2F%2F19ds10719@dshs.kr&chs=300x300&choe=UTF-8&chld=L|2' alt=''></a>
+          </div>
+      </div>
+        <div class="box_ss">
+            <a href="/logout">로그아웃</a>
+        </div>
+    </div>
+    
+  </div>
+</body>
+</html>

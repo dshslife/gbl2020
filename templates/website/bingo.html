@@ -1,0 +1,49 @@
+{% load socialaccount %}
+{% providers_media_js %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href='{% static "website/style.css" %}'>
+  <link rel="stylesheet" href='{% static "website/css/bootstrap.css" %}'>
+  <title>SUMUD빙고</title>
+</head>
+<body>
+{% include 'website/navbar.html' %}
+        <main>
+            {% block content %}
+  <div class="body">
+    <div class="main">
+    <br>
+        <div class="main1">Startup Meet Up Day</div>
+      <div class="main2">
+        빙고판
+      </div>
+      {% for binrow in bingo%}
+      <div class="bingo_big">
+      {% for bincol in binrow %}
+      {% if bincol.complete %}
+      <button type="button" class="btn btn-success bingo_btn">
+        <div class='bingo_text'>
+          {{ bincol.name | linebreaksbr }}
+        </div>
+      </button>
+      {% else %}
+      <button type="button" class="btn btn-success bingo_btn disabled">
+        <div class='bingo_text'>
+          {{ bincol.name | linebreaksbr }}
+        </div>
+      </button>
+      {% endif %}
+      {% endfor %}
+    </div>
+      {% endfor %}
+    </div>
+  </div>
+  {% endblock %}
+        </main>
+</body>
+</html>
