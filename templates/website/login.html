@@ -7,21 +7,23 @@
 	<head>
         <link rel="stylesheet" href='{% static "website/style_ss.css" %}'>
 		<link rel="stylesheet" href='{% static "website/css/bootstrap.css" %}'>
-        <title>login</title>
+        <title>gbl2020 login</title>
         {% webpush_header %}
 	</head>
 	<body>
     <div class="body">
     <div class="main">
 
-        <div class="login_sumud">
-            Start Up<br>Meet Up Day<br>2020
+        <div class="login_sumud" style="font-size: 150px; margin-bottom: 5px">
+            2020 <span style="white-space: nowrap;" class="g">G</span><span style="white-space: nowrap" class="b">B</span><span style="white-space: nowrap" class="l">L</span>
         </div>
-        {% webpush_button %}
+        <div class="main_title2" style="font-size: 47px; margin-left: 48px; margin-bottom: 50px">
+        수학,과학 융합/Game Based Learning
+        </div>
         <div class="sub_text">
             학교구글계정(dshs.kr)으로 로그인 해주세요.
         </div>
-        <div class="sub_btn">
+        <div class="sub_btn"  >
         <a href="/accounts/google/login"><button type="button" class="btn_plus">구글로 로그인</button></a>
         </div>
 

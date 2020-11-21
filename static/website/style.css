@@ -10,22 +10,20 @@
 html {
   height: 100%;
   width: 100%;
-  background-color: #0F132C;
+  background-color: #34314C;
 }
 
 body {
   display: flex;
   flex-direction: column;
-  background-color: #0F132C;
-  color: #0F132C;
+  background-color: #34314C;
   flex: 1;
 }
 
 .body {
   display: flex;
   flex-direction: column;
-  background-color: #0F132C;
-  color: #0F132C;
+  background-color: #34314C;
   height: 100%;
   padding-bottom: 40px;
 }
@@ -34,22 +32,28 @@ body {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  background-color: #0F132C;
+  background-color: #34314C;
   width: 94%;
   margin-left: 3%;
   margin-right: 3%;
   height: 100%;
 }
+
+.main p{
+  font-size: 20px;
+  color: white;
+}
+
 fuckyou {
   font-family: 'Noto Sans KR', sans-serif;
   font-size: 1000%;
-  background-color: #0F132C;
+  background-color: #282c37;
 }
 
 .box {
   display: flex;
   flex-direction: column;
-  background-color: #252A3E;
+  background-color: #C8C8C8;
   align-content: flex-start;
   margin-top: 4%;
   width: 100%;
@@ -85,21 +89,41 @@ fuckyou {
 .plan_title {
   font-family: 'Noto Sans KR', sans-serif;
   font-weight: bold;
-  color: white;
+  color:black;
   font-size: 18pt;
 }
 .content {
   font-family: 'Noto Sans KR', sans-serif;
   font-size: 15pt;
-  color: #878A9E;
+  color: black;
 }
 
 .main_title {
-  margin-top: 8%;
+  margin-top: 20%;
   font-family: 'Noto Sans KR', sans-serif;
   font-weight: 600;
-  color: #F94077;
-  font-size: 35pt;
+  color: #D6D6D6;
+  font-size: 40pt;
+  line-height: 122%;
+}
+
+.g{
+  color: #FF7473;
+}
+
+.b{
+  color: #5DC8EE;
+}
+
+.l{
+  color: #FFC952;
+}
+
+.main_title2 {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 600;
+  color: #A5F0FF;
+  font-size: 15px;
   line-height: 122%;
 }
 
@@ -115,15 +139,17 @@ fuckyou {
 .minititle {
   font-family: 'Noto Sans KR', sans-serif;
   font-size: 20pt;
-  color: #878A9E;
+  color: #D6D6D6;
+  font-weight: bold;
   margin-top: 10px;
+  margin-left: 8px;
 }
 
 .minititle_ss {
   font-weight: bold;
     color: ghostwhite;
     font-size: 50px;
-    font-weight: bold;
+    font-weight: 500px;
 }
 
 .leftgo {
@@ -136,8 +162,8 @@ fuckyou {
 .happy_text {
   font-family: 'Noto Sans KR', sans-serif;
   font-size: 15pt;
-  font-weight: 400;
-  color: #F94077;
+  font-weight: 700;
+  color: black;
 }
 
 .bingo_big {
@@ -172,23 +198,23 @@ fuckyou {
 }
 
 .box_ss a:link {
-        background-color: #161A34;
-        color: #878A9E;
+        background-color: #878A9E;
+        color: #161A34;
     }
 
   .box_ss a:hover {
-      background-color: #161A34;
-      color: #878A9E;
+      background-color: #878A9E;
+        color: #161A34;
   }
 
     .box_ss a:visited {
-        background-color: #161A34;
-        color: #878A9E;
+        background-color: #878A9E;
+        color: #161A34;
     }
 
   .box_ss a:active {
       text-decoration: none;
-      background-color: #161A34;
+      background-color: #878A9E;
       text-underline: none;
       position: relative;
       top: 1px;
@@ -197,8 +223,8 @@ fuckyou {
   }
 
   .main1{
-    color: #F94077;
-    font-size: 30px;
+    color: #C8C8C8;
+    font-size: 24px;
     font-weight: 700;
 }
 
@@ -207,5 +233,4 @@ fuckyou {
     color: ghostwhite;
     font-size: 50px;
     font-weight: bold;
-    margin-bottom: 40px;
 }

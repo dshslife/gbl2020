@@ -8,7 +8,7 @@
 }
 
 .bottom-navbar {
-    background-color: #161A34;
+    background-color: #1B1927;
     height: 8%;
     color: #878A9E;
     padding-top : 0.5rem;
@@ -42,32 +42,44 @@
       font-size: 21px;
   }
 /*화면에 따라 색 변경됨*/
-  li a.current{
-      color: #F94077;
-  }
 
     .bottom-navbar a:link {
-        background-color: #161A34;
+        background-color: #1B1927;
+        color: #878A9E;
+    }
+
+    .bottom-navbar a:visited {
+        background-color: #1B1927;
         color: #878A9E;
     }
 
   .bottom-navbar a:hover {
-      background-color: #161A34;
+      background-color: #1B1927;
       color: #878A9E;
   }
 
-    .bottom-navbar a:visited {
-        background-color: #161A34;
-        color: #878A9E;
-    }
+  .nav-active{
+      background-color: #1B1927;
+      color: #A5F0FF;
+  }
+
+  .i1 .i2 .i3 .i4{
+      background-color: #1B1927;
+      color: #878A9E;
+  }
 
   .bottom-navbar a:active {
       text-decoration: none;
-      background-color: #161A34;
-      color: #F94077;
+      background-color: #1B1927;
+      color: #A5F0FF;
       text-underline: none;
       position: relative;
       top: 1px;
       margin-bottom: 1px;
       box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.42);
+  }
+
+  .bottom-navbar a.current{
+      background-color: #1B1927;
+      color: #A5F0FF;
   }

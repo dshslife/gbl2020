@@ -10,16 +10,14 @@
 body {
     display: flex;
     flex-direction: column;
-    background-color: #0F132C;
-    color: #0F132C;
+    background-color: #34314C;
     flex: 1;
 }
 
 .body {
   display: flex;
   flex-direction: column;
-  background-color: #0F132C;
-  color: #0F132C;
+  background-color: #34314C;
   height: 100%;
   padding-bottom: 40px;
 }
@@ -28,7 +26,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  background-color: #0F132C;
+  background-color: #34314C;
   width: 94%;
   margin-left: 3%;
   margin-right: 3%;
@@ -53,13 +51,20 @@ body {
 }
 
 .login_sumud{
-    margin-top:40rem;
+    margin-top:45rem;
     margin-bottom: 30px;
     margin-left: 3rem;
     font-size: 85px;
-    color: #F94077;
+  color: #D6D6D6;
     font-weight: 700;
     text-decoration-line: inherit;
+}
+
+.main_title2 {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 600;
+  color: #A5F0FF;
+  line-height: 122%;
 }
 
 .sub_text{
@@ -76,15 +81,16 @@ body {
     height: 6rem;
     font-size: 45px;
     font-weight: bold;
-    color: ghostwhite;
-    background-color: #F94077;
+    color: black;
+    background-color: #A5F0FF;
+    border: 0;
 }
 
 .sub_btn{
-    border: solid 6px #F94077;
+    border: solid 6px #A5F0FF;
     border-radius: 10px;
     font-size:37px;
-    color: #F94077;
+    color: #A5F0FF;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
@@ -112,3 +118,15 @@ body {
    p{
        color: #d6d8d9;
    }
+
+   .g{
+  color: #FF7473;
+}
+
+.b{
+  color: #5DC8EE;
+}
+
+.l{
+  color: #FFC952;
+}
