@@ -12,5 +12,6 @@ urlpatterns = [
   path('webpush/', include('webpush.urls')),
   path('map', views.map, name='map'),
   path('booth', views.BoothCheck.as_view(), name='booth'),
+  path('booth/<slug:id>', views.BoothInfo, name='detail'),
   path('push', views.WebPush.as_view(), name='webpush')
 ]

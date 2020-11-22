@@ -21,10 +21,15 @@
         수학,과학 융합/Game Based Learning
         </div>
         <div class="sub_text">
-            학교구글계정(dshs.kr)으로 로그인 해주세요.
+            코드를 입력해주세요
         </div>
-        <div class="sub_btn"  >
-        <a href="/accounts/google/login"><button type="button" class="btn_plus">구글로 로그인</button></a>
+        <form method="POST" action="login">
+            {% csrf_token %}
+            <input name="code" type="text" class="form-control" id="exampleInputEmail1" placeholder="코드를 입력해주세요" style="height: 150px;">
+            <div class="sub_btn">
+            <input type="submit" class="btn_plus" />
+        </form>
+        
         </div>
 
         <div class="box"></div>

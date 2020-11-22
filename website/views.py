@@ -9,17 +9,18 @@ from django.views.decorators.csrf import csrf_exempt
 import json
 from django.utils.decorators import method_decorator
 from webpush import send_user_notification
-
+from django.contrib import auth
+from django.contrib.auth.models import User
 from webpush import send_group_notification
-db: Database = MongoDBManager()['startup']
+db: Database = MongoDBManager()['gbl']
 
-def initNewUser(email):
+def initNewUser(code):
   try:
-    db['users'].insert({'email': email,
+    db['users'].insert({
+    'code': code,
     'bingo': [],
     'booth': [],
-    'award': False,
-    'bingo_line': 0})
+    'point': 0})
   except Exception as e:
     print(e)
     return False
@@ -29,29 +30,39 @@ def index(request):
   if not request.user.is_authenticated:
     return redirect('/login')
   else:
-    rep = db['users'].find_one({'email': request.user.email})
+    rep = db['users'].find_one({'code': request.user.username})
     if not rep:
-      initNewUser(request.user.email)
-      request.session['_id'] = str(db['users'].find_one({'email': request.user.email})['_id'])
+      initNewUser(request.user.username)
+      request.session['_id'] = str(db['users'].find_one({'code': request.user.username})['_id'])
       print("INIT NEW USER")
     if not '_id' in request.session:
-      request.session['_id'] = str(db['users'].find_one({'email': request.user.email})['_id'])
+      request.session['_id'] = str(db['users'].find_one({'code': request.user.username})['_id'])
     plan = db['plan'].find({})
     booth = db['booth'].find({})
     return render(request, "website/information.html", {'plan': plan, 'booth': booth, 'webpush': {'group': 'startup'}})
 # Create your views here.
 
 def test(request):
-  return render(request, 'website/login.html', {'webpush': {'group': 'startup'}})
+  if request.method == "POST":
+    user = auth.authenticate(request, username=request.POST['code'], password='ghkdtjdtlr')
+    if user is not None:
+      auth.login(request, user)
+      return redirect('/')
+    else:
+      return render(request, 'website/login.html', {'webpush': {'group': 'startup'}, 'error': '올바르지 않은 코드입니다'})
+  else:
+    return render(request, 'website/login.html', {'webpush': {'group': 'startup'}})
+
 
 
 def map(request):
   return render(request, 'website/map.html')
 
+
 @login_required(login_url='/')
 def bingo(request):
   bingo = list(db['bingo'].find({}))
-  user_bingo = dict(db['users'].find_one({'email': request.user.email}))
+  user_bingo = dict(db['users'].find_one({'code': request.user.username}))
   print(user_bingo['bingo'])
   for i in range(len(bingo)):
     if bingo[i]['_id'] in user_bingo['bingo']:
@@ -66,14 +77,18 @@ def bingo(request):
 @login_required(login_url='/')
 def profile(request):
   if not '_id' in request.session:
-    request.session['_id'] = str(db['users'].find_one({'email': request.user.email})['_id'])
-  booth = db['users'].find_one({'email': request.user.email})['booth']
+    request.session['_id'] = str(db['users'].find_one({'code': request.user.username})['_id'])
+  booth = db['users'].find_one({'code': request.user.username})['booth']
   print('THIS IS BOOTH')
   return render(request, "website/profile.html", {"visited_booth": booth, 'webpush': {'group': 'startup'}})
 
 def logout(request):
   auth_logout(request)
   return redirect('/')
+
+def BoothInfo(request, id):
+  print(id)
+  return HttpResponse(status=200)
 
 @login_required(login_url='/')
 def information(request):
@@ -85,7 +100,6 @@ class BoothCheck(View):
   @method_decorator(csrf_exempt)
   def dispatch(self, request, *args, **kwargs):
     return super(BoothCheck, self).dispatch(request, *args, **kwargs)
-
   def post(self, request):
     print(request.body)
     if request.body == None:
@@ -94,30 +108,24 @@ class BoothCheck(View):
       try:
         data = json.loads(request.body)
         print(data)
-        if not 'email' in data:
-          return JsonResponse(status=400, data={'status': 'NO_EMAIL_ERROR'})
+        if not 'code' in data and 'point' in data and not 'booth' in data:
+          return JsonResponse(status=400, data={'status': 'NO_code_ERROR'})
         if 'booth' in data:
           booth = db['booth'].find_one({'club': data['booth']})
           if booth == None:
             return JsonResponse(status=400, data={ 'status': 'NO_BOOTH_ERROR'})
-          usertmp = dict(db['users'].find_one({'email': data['email']}))
+          usertmp = dict(db['users'].find_one({'code': data['code']}))
           if usertmp == None:
             return JsonResponse(status=400, data={ 'status': 'NOT_FOUND_USER_ERROR'})
           else:
-            db['users'].update_one({'email': data['email']},{'$push': {'booth': booth['_id']}})
-        if 'bingo' in data:
-          print(data['bingo'])
-          bingo = db['bingo'].find_one({'name': data['bingo']})
-          if bingo == None:
-            return JsonResponse(status=400, data={ 'status': 'NO_BINGO_ERROR'})
-          usertmp = dict(db['users'].find_one({'email': data['email']}))
-          if usertmp == None:
-            return JsonResponse(status=400, data={ 'status': 'NOT_FOUND_USER_ERROR'})
-          else:
-            db['users'].update_one({'email': data['email']},{'$push': {'bingo': bingo['_id']}})
+            if booth['_id'] in usertmp['booth']:
+              return JsonResponse(status=400, data={ 'status': 'ALREADY_EXPERIENCED'})
+            db['users'].update_one({'code': data['code']},{'$push': {'booth': booth['_id']}, 'point': usertmp['point'] + data['point']})
         return HttpResponse(status=200)
       except Exception as e:
         return JsonResponse(status=500, data={'error': str(e)})
+
+
 from webpush.utils import send_to_subscription
 
 class WebPush(View):
