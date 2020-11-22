@@ -2,7 +2,7 @@ from pymongo import MongoClient
 import logging, os
 
 class MongoDBManager(MongoClient):
-  name = "StartupDB"
+  name = "Startup"
   def __init__(self):
     self.logger = logging.getLogger(self.name or self.__class__.__name__)
     formatter = logging.Formatter("[%(asctime)s %(levelname)s] (%(name)s: %(filename)s:%(lineno)d) > %(message)s")
