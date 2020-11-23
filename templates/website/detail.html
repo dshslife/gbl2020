@@ -10,16 +10,21 @@
   <title>부스 정보</title>
 </head>
 <body>
-
+{% include 'website/backkey.html' %}
 {% include 'website/navbar.html' %}
   <div class="body">
     <div class="main">
-        <br>
-        <div class="main1">GameBasedLearning2020</div>
-        <div class="main2">{{booth.name}}</div>
+        <div style="height: 46px;"><br></div>
+        <div class="main2_ss">‖{{booth.name}}</div>
+        <div class="main3_ss">&nbsp;&nbsp;&nbsp;&nbsp;-{{booth.club}}</div>
         <div class="box">
-          <video src="{% static 'booth_vid/'%}"> 비디오를 출력할 수 없습니다. </video>
+            <div style="font-size: 25px; color: black; margin-left: 3px; font-weight: 600;">‣부스 동영상</div>
+          <video controls ><source src="{% static 'booth_vid/{{ booth.code }}'%}" type="video/mp4"> 비디오를 출력할 수 없습니다. </video>
+            <div style="font-size: 25px; color: black; margin-left: 3px; font-weight: 600;">‣부스 정보</div>
+            <iframe src="http://meetstartup.today/web/viewer.html?file=../static/booth_pdf/3-E.pdf" width="100%" height="500px">
+    </iframe>
         </div>
+        <br><br>
     </div>
   </div>
 </body>
