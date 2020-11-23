@@ -13,5 +13,7 @@ urlpatterns = [
   path('map', views.map, name='map'),
   path('booth', views.BoothCheck.as_view(), name='booth'),
   path('booth/<slug:id>', views.BoothInfo, name='detail'),
-  path('push', views.WebPush.as_view(), name='webpush')
+  path('push', views.WebPush.as_view(), name='webpush'),
+  path('api/list', views.BoothList.as_view(), name='boothlist'),
+  path('api/set', views.setBoothBusy.as_view(), name='setBoothBusy')
 ]

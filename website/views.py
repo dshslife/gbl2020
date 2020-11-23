@@ -13,6 +13,15 @@ from django.contrib import auth
 from django.contrib.auth.models import User
 from webpush import send_group_notification
 db: Database = MongoDBManager()['gbl']
+import collections
+
+def objectIdDecoder(list):
+  results=[]
+  for document in list:
+    document['_id'] = str(document['_id'])
+    results.append(document)
+  return results
+
 
 def initNewUser(code):
   try:
@@ -82,26 +91,35 @@ def profile(request):
   print('THIS IS BOOTH')
   return render(request, "website/profile.html", {"visited_booth": booth, 'webpush': {'group': 'startup'}})
 
+from bson.objectid import ObjectId
+
 def logout(request):
   auth_logout(request)
   return redirect('/')
 
 def BoothInfo(request, id):
-  print(id)
-  return HttpResponse(status=200)
+  data = db['booth'].find_one({'_id' : ObjectId(id)})
+  if data == None:
+    return HttpResponse(status=404)
+  else:
+    return render(request, 'website/detail.html', { 'booth': data})
 
 @login_required(login_url='/')
 def information(request):
   plan = db['plan'].find({})
   booth = db['booth'].find({})
-  return render(request, "website/information.html", {'plan': plan, 'booth': booth})
+  result_booth = []
+  for i in booth:
+    i['id'] = str(i['_id'])
+    result_booth.append(i)
+  print(result_booth)
+  return render(request, "website/information.html", {'plan': plan, 'booth': result_booth})
 
 class BoothCheck(View):
   @method_decorator(csrf_exempt)
   def dispatch(self, request, *args, **kwargs):
     return super(BoothCheck, self).dispatch(request, *args, **kwargs)
   def post(self, request):
-    print(request.body)
     if request.body == None:
       return HttpResponse(status=400)
     else:
@@ -120,7 +138,7 @@ class BoothCheck(View):
           else:
             if booth['_id'] in usertmp['booth']:
               return JsonResponse(status=400, data={ 'status': 'ALREADY_EXPERIENCED'})
-            db['users'].update_one({'code': data['code']},{'$push': {'booth': booth['_id']}, 'point': usertmp['point'] + data['point']})
+            db['users'].update_one({'code': data['code']},{'$push': {'booth': booth['_id']}, '$set': {'point': usertmp['point'] + data['point']}})
         return HttpResponse(status=200)
       except Exception as e:
         return JsonResponse(status=500, data={'error': str(e)})
@@ -139,4 +157,32 @@ class WebPush(View):
     else:
       data = json.loads(request.body)
       send_group_notification(group_name="startup",payload={"head": "스타트업 밋업데이 2020", "icon": "https://i.imgur.com/EqNRGOC.png", "url": "https://meetstartup.today", "body": data['message']}, ttl=1000)
+      return HttpResponse(status=200)
+
+class BoothList(View):
+  @method_decorator(csrf_exempt)
+  def dispatch(self, request, *args, **kwargs):
+    return super(BoothList, self).dispatch(request, *args, **kwargs)
+  
+  def get(self, request):
+    data = list(db['booth'].find({}).sort('busy', 1))
+    return JsonResponse(status=200, data=objectIdDecoder(data), safe=False)
+
+
+
+class setBoothBusy(View):
+  @method_decorator(csrf_exempt)
+  def dispatch(self, request, *args, **kwargs):
+    return super(setBoothBusy, self).dispatch(request, *args, **kwargs)
+  
+  def post(self, request):
+    if request.body == None:
+      return HttpResponse(status=400)
+    data = json.loads(request.body)
+    if not '_id' in data or not 'busy' in data:
+      return HttpResponse(status=403)
+    else:
+      print(list(db['booth'].find({'_id' : ObjectId(data['_id']) })))
+      db['booth'].update_one({'_id': ObjectId(data['_id'])}, {'$set': {'busy': data['busy']}})
+
       return HttpResponse(status=200)

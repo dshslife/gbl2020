@@ -48,10 +48,7 @@ bingo : [
    'club': '운영동아리시발',
    '_id': '고유아이디시발',
    'message': '메세지',
-   'busy': 0|1|2,
-   'data': {
-      'pdf': 'http...',
-      'video': 'http...'
-   }
+   'busy': 0|1|2,,
+   'code': '3B'
 }
 ```
