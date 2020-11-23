@@ -29,7 +29,7 @@ SECRET_KEY = '=7b2t5&o17@$nsrv$jc1t^ag&99_x&3*b4v^j+yf7gd%^o*yg7'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['11adf25b5d45.ngrok.io', 'meetstartup.today', '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['11adf25b5d45.ngrok.io', 'meetstartup.today', '127.0.0.1', 'localhost', 'gbl.today', 'gbl2020.kr']
 
 
 # Application definition
