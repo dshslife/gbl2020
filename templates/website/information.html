@@ -19,10 +19,18 @@
     <div class="main_title" style="margin-top: 15%">
       2020 <span style="white-space: nowrap" class="g">G</span><span style="white-space: nowrap" class="b">B</span><span style="white-space: nowrap" class="l">L</span>
     </div>
-    <div class="main_title2" style="font-size: 20px">
+    <div class="main_title2" style="font-size: 20px; margin-bottom: 8px;">
         수학,과학 융합/Game Based Learning
     </div>
-    <div class="minititle" style="margin-top: 10%;">
+    <div class="minititle" style="margin-top: 2%; font-size: 14px; color: red; font-weight: 500;">
+      에러신고는 <a href="https://open.kakao.com/o/sUtgitHc">여기로</a>
+    </div>
+
+    <div class="minititle" style="margin-top: 1%; font-size: 11px; font-weight: 500;">
+      Developed by <a href="https://web.facebook.com/profile.php?id=100013984185945">Soungmin Son(손성민)</a>, <a href="https://www.instagram.com/tjdtlr/?hl=ko">Seongsik Hwang(황성식)</a>
+    </div>
+
+    <div class="minititle" style="margin-top: 8%;">
       행사 일정
     </div>
     {% for pl in plan %}
@@ -44,7 +52,7 @@
       </div> 
     </div>
     {% endfor %}
-    <div class="minititle" style="margin-top: 10%;">
+    <div class="minititle" style="margin-top: 8%;">
       부스 정보
     </div>
     {% for boot in booth %}
@@ -58,6 +66,24 @@
             {{boot.club | linebreaksbr}}
           </div>
           <a href="/booth/{{boot.id}}" class="btn-booth">부스정보 더보기</a>
+        </div>
+        
+        <div class="minibox leftgo">
+          {% if boot.busy == 0 %}
+          <div class="plan_title" style="margin-right: 10px; background-color:  #5DC8EE; color: rgb(46, 46, 46); border: solid 3px #5DC8EE; border-radius: 12px; font-size: 35px;">
+            여유
+          </div>
+          {% endif %}
+          {% if boot.busy == 1 %}
+          <div class="plan_title" style="margin-right: 10px; background-color: #FFC952; color: rgb(46, 46, 46); border: solid 3px #FFC952; border-radius: 12px; font-size: 35px;">
+            적절
+          </div>
+          {% endif %}
+          {% if boot.busy == 2 %}
+          <div class="plan_title" style="margin-right: 10px; background-color:#FF7473; color: rgb(46, 46, 46); border: solid 3px #FF7473; border-radius: 12px; font-size: 35px;">
+            혼잡
+          </div>
+          {% endif %}
         </div>
       </div> 
     </div>

@@ -20,15 +20,15 @@
         <div class="main_title2" style="font-size: 47px; margin-left: 48px; margin-bottom: 50px">
         수학,과학 융합/Game Based Learning
         </div>
-        <div class="sub_text">
-            코드를 입력해주세요
+        <div style="text-align: center; margin-left: 3.6rem;">
+            <br><br>
+            <form method="POST" action="login">
+                {% csrf_token %}
+                <input name="code" type="text" class="form-control" id="exampleInputEmail1" placeholder="코드를 입력해주세요" style="height: 150px; font-size: 50px;">
+                <div class="sub_btn">
+                <input type="submit" class="btn_plus" />
+            </form>
         </div>
-        <form method="POST" action="login">
-            {% csrf_token %}
-            <input name="code" type="text" class="form-control" id="exampleInputEmail1" placeholder="코드를 입력해주세요" style="height: 150px;">
-            <div class="sub_btn">
-            <input type="submit" class="btn_plus" />
-        </form>
         
         </div>
 

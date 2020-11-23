@@ -40,9 +40,27 @@
             <a rel='nofollow' border='0' style='cursor:default; align-items: center;'><img style="width: 100%;" src='https://chart.googleapis.com/chart?cht=qr&chl={{user.username}}&chs=300x300&choe=UTF-8&chld=L|2' alt=''></a>
           </div>
       </div>
-        <div class="box_ss">
-            <a href="/logout" style="border-radius: 5px; background-color: #FF7473">로그아웃</a>
-        </div>
+      <div class="box_ss">
+        <a href="/logout" style="border-radius: 5px; background-color: #FF7473">로그아웃</a>
+    </div>
+      <div class="minititle">
+        참여한 부스 목록
+      </div>
+      {% for boot in visited_booth %}
+      <div class="box">
+        <div class="row2">
+          <div class="minibox" style="flex: 1; margin-left: 5%; margin-top: 4%; margin-bottom: 4%;">
+            <div class="plan_title">
+              {{boot.code | linebreaksbr}}
+            </div>
+            <div class="content">
+              {{boot.name | linebreaksbr}}
+            </div>
+          </div>
+        </div> 
+      </div>
+      {% endfor %}
+        <br><br>
     </div>
     
   </div>

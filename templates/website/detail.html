@@ -19,9 +19,9 @@
         <div class="main3_ss">&nbsp;&nbsp;&nbsp;&nbsp;-{{booth.club}}</div>
         <div class="box">
             <div style="font-size: 25px; color: black; margin-left: 3px; font-weight: 600;">‣부스 동영상</div>
-          <video controls ><source src="{% static 'booth_vid/{{ booth.code }}'%}" type="video/mp4"> 비디오를 출력할 수 없습니다. </video>
-            <div style="font-size: 25px; color: black; margin-left: 3px; font-weight: 600;">‣부스 정보</div>
-            <iframe src="http://meetstartup.today/web/viewer.html?file=../static/booth_pdf/3-E.pdf" width="100%" height="500px">
+          <video controls height=250><source src="http://gbl.today/static/booth_vid/{{booth.code}}.mp4" type="video/mp4"> 비디오를 출력할 수 없습니다. </video>
+            <div style="font-size: 25px; color: black; margin-left: 3px; font-weight: 600; margin-top: 20px;">‣부스 정보</div>
+            <iframe src="http://meetstartup.today/web/viewer.html?file=../static/booth_pdf/{{booth.code}}.pdf" width="100%" height="500px">
     </iframe>
         </div>
         <br><br>

@@ -27,7 +27,6 @@ def initNewUser(code):
   try:
     db['users'].insert({
     'code': code,
-    'bingo': [],
     'booth': [],
     'point': 0})
   except Exception as e:
@@ -67,21 +66,18 @@ def test(request):
 def map(request):
   return render(request, 'website/map.html')
 
-
+import pymongo
 @login_required(login_url='/')
 def bingo(request):
-  bingo = list(db['bingo'].find({}))
-  user_bingo = dict(db['users'].find_one({'code': request.user.username}))
-  print(user_bingo['bingo'])
-  for i in range(len(bingo)):
-    if bingo[i]['_id'] in user_bingo['bingo']:
-      print(bingo[i])
-      bingo[i]['complete'] = True
-    else:
-      bingo[i]['complete'] = False
-  n = 3
-  bingo = [bingo[i*n: (i + 1) * n] for i in range((len(bingo) + n - 1) // n)]
-  return render(request, "website/bingo.html", {'bingo': bingo, 'award': user_bingo['award']})
+  tmpuser = db['users'].find_one({'code': request.user.username})
+  rank = list(db['users'].find({}).sort('point', pymongo.DESCENDING))
+  result = []
+  for idx, user in enumerate(rank):
+    user['rank'] = idx+1
+    result.append(user)
+    if user['code'] == request.user.username:
+      tmpuser['rank'] = idx+1
+  return render(request, "website/bingo.html", {'selfuser': tmpuser, 'rank': result[:20]})
 
 @login_required(login_url='/')
 def profile(request):
@@ -89,7 +85,11 @@ def profile(request):
     request.session['_id'] = str(db['users'].find_one({'code': request.user.username})['_id'])
   booth = db['users'].find_one({'code': request.user.username})['booth']
   print('THIS IS BOOTH')
-  return render(request, "website/profile.html", {"visited_booth": booth, 'webpush': {'group': 'startup'}})
+  visited_booth = []
+  for item in booth:
+    visited_booth.append(db['booth'].find_one({'_id': item}))
+
+  return render(request, "website/profile.html", {"visited_booth": visited_booth, 'webpush': {'group': 'startup'}})
 
 from bson.objectid import ObjectId
 
