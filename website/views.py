@@ -129,7 +129,7 @@ class BoothCheck(View):
         if not 'code' in data and 'point' in data and not 'booth' in data:
           return JsonResponse(status=400, data={'status': 'NO_code_ERROR'})
         if 'booth' in data:
-          booth = db['booth'].find_one({'club': data['booth']})
+          booth = db['booth'].find_one({'_id': ObjectId(data['booth'])})
           if booth == None:
             return JsonResponse(status=400, data={ 'status': 'NO_BOOTH_ERROR'})
           usertmp = dict(db['users'].find_one({'code': data['code']}))
