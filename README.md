@@ -7,15 +7,13 @@
 
 행사 일정, 부스의 간단한 정보와 혼잡도를 바로 확인하실 수 있으며, 밑으로 스크롤시 모든 부스를 확인하실 수 있습니다.
 
-<img src="./img_readme/main.png" width="200">
-<img src="./img_readme/main_scoll.gif" width="200">
+<img src="./img_readme/main.png" width="200"><img src="./img_readme/main_scoll.gif" width="200">
 
 ### 1) Booth details
 
 "부스정보 더보기" 버튼을 통해 들어가실 수 있는 화면입니다. 부스 동영상, 부스 정보(부스 소개)를 확인하실 수 있습니다.
 
-<img src="./img_readme/booth-details.gif" width="200">
-<img src="./img_readme/booth-details.png" width="200">
+<img src="./img_readme/booth-details.gif" width="200"><img src="./img_readme/booth-details.png" width="200">
 
 ## Map
 
