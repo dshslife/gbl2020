@@ -35,6 +35,3 @@
 
 ## Erorr report
 에러신고 : [Report Error](https://open.kakao.com/o/sUtgitHc)
-
-## Developed with
-대전대신고등학교 손성민([happycastle114](https://github.com/happycastle114))
